@@ -1,6 +1,6 @@
 {
   "name": "typedoc-plugin-fixcomputednames",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A TypeDoc plugin that fixes the output for some properties with computed names",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rbuckton/typedoc-plugin-biblio.git"
+    "url": "git+https://github.com/rbuckton/typedoc-plugin-fixcomputednames.git"
   },
   "keywords": [
     "typedocplugin",
@@ -20,9 +20,9 @@
   "author": "Ron Buckton (rbuckton@chronicles.org)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/rbuckton/typedoc-plugin-biblio/issues"
+    "url": "https://github.com/rbuckton/typedoc-plugin-fixcomputednames/issues"
   },
-  "homepage": "https://github.com/rbuckton/typedoc-plugin-biblio#readme",
+  "homepage": "https://github.com/rbuckton/typedoc-plugin-fixcomputednames#readme",
   "peerDependencies": {
     "typedoc": ">=0.10.0"
   },
