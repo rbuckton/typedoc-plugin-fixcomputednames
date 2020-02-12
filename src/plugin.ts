@@ -13,14 +13,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import * as ts from "typedoc/node_modules/typescript/lib/typescript";
+import ts from 'typescript';
 import { Component, ConverterComponent } from "typedoc/dist/lib/converter/components";
 import { Converter, Context } from "typedoc/dist/lib/converter";
 import { Reflection, ReflectionKind } from "typedoc/dist/lib/models";
-
-declare module "typedoc/node_modules/typescript/lib/typescript" {
-    function isDeclaration(node: ts.Node): node is ts.NamedDeclaration;
-}
 
 const classMember =
     ReflectionKind.Accessor |
