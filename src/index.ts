@@ -13,14 +13,34 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+import ts from 'typescript';
+import { Application, Converter, Reflection, ReflectionKind } from "typedoc";
+import { Context } from 'typedoc/dist/lib/converter/context';
 
-import "source-map-support/register";
-import { PluginHost } from "typedoc/dist/lib/utils";
-import { FixComputedNamesPlugin } from "./plugin";
+const classMember =
+  ReflectionKind.Accessor |
+  ReflectionKind.Constructor |
+  ReflectionKind.Method |
+  ReflectionKind.Property |
+  ReflectionKind.Event;
 
-function load(host: PluginHost) {
-    const app = host.owner;
-    app.converter.addComponent("fix-computed-names", new FixComputedNamesPlugin(app.converter));
+export function load(app: Application) {
+  app.converter.on(Converter.EVENT_CREATE_DECLARATION, onCreateDeclaration, 100);
 }
 
-export = load;
+const onCreateDeclaration = (context: Context, reflection: Reflection, node: ts.Declaration) => {
+  const match = /^__@(\w+)$/.exec(reflection.name);
+  if (match) {
+    // rename built-in symbols
+    reflection.name = `[Symbol.${match[1]}]`;
+  } else if (reflection.kindOf(classMember) && reflection.name === "__computed") {
+    // rename computed properties
+    const name = ts.getNameOfDeclaration(node)
+    const symbol = name && context.checker.getSymbolAtLocation(name); // get the late-bound symbol
+    if (symbol) {
+      reflection.name = context.checker.symbolToString(symbol, /*node*/ undefined, ts.SymbolFlags.ClassMember);
+    } else if (name) {
+      reflection.name = name.getText();
+    }
+  }
+}

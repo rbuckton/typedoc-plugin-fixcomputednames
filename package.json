@@ -1,9 +1,12 @@
 {
-  "name": "typedoc-plugin-fixcomputednames",
-  "version": "1.0.1",
+  "name": "@itsjamie/typedoc-plugin-fixcomputednames",
+  "version": "1.1.0-rc.1",
   "description": "A TypeDoc plugin that fixes the output for some properties with computed names",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "tsconfig": "tsconfig.json",
   "scripts": {
     "build": "tsc -b .",
@@ -24,10 +27,12 @@
   },
   "homepage": "https://github.com/rbuckton/typedoc-plugin-fixcomputednames#readme",
   "peerDependencies": {
-    "typedoc": ">=0.15.0",
-    "typescript": "^3.7.2"
+    "typedoc": ">=0.21.9",
+    "typescript": "4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x"
   },
   "devDependencies": {
+    "typedoc": "0.21.9",
+    "typescript": "^4.4.2",
     "@types/node": "^12.0.2"
   },
   "dependencies": {
